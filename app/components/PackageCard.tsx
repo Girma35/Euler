@@ -40,3 +40,4 @@ export default function PackageCard({ package: pkg }: PackageCardProps) {
     </div>
   )
 }
+

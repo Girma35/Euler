@@ -7,3 +7,4 @@ if [ -f "public/404.html" ]; then
 else
     echo "❌ public/404.html not found"
 fi
+

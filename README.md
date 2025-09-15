@@ -89,6 +89,24 @@ pnpm build
    - Click "Deploy" and Vercel handles the rest
    - Your site will be live at `https://your-project.vercel.app`
 
+### GitHub Pages (Project Site: username.github.io/repo)
+
+1. Push this repo to GitHub, default branch `main`
+2. In GitHub, go to Settings → Pages → Build and deployment → Source: GitHub Actions
+3. The provided workflow `.github/workflows/gh-pages.yml` will build and deploy on push to `main`
+4. Your site will be available at `https://<username>.github.io/<repo>/`
+
+Local test for Pages pathing:
+```bash
+pnpm build:gh
+python3 -m http.server 3000 -d out
+# open http://localhost:3000/<repo>/
+```
+
+Notes:
+- We set `NEXT_BASE_PATH=/<repo>` and `NEXT_ASSET_PREFIX=/<repo>` for correct asset URLs
+- 404 is handled by `public/404.html` copied to `out/404.html`
+
 ### Manual Static Hosting
 
 1. **Build the project**
@@ -187,3 +205,4 @@ This project is proprietary to Euler. All rights reserved.
 
 **Ready for deployment!** 🎉
 # Euler
+

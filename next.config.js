@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
+const repoBasePath = process.env.NEXT_BASE_PATH || ''
+const assetPrefix = process.env.NEXT_ASSET_PREFIX || (repoBasePath ? `${repoBasePath}/` : '')
+
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
+  // Configure basePath/assetPrefix for GitHub Pages project sites
+  basePath: repoBasePath || undefined,
+  assetPrefix: assetPrefix || undefined,
   images: {
     unoptimized: true
   },

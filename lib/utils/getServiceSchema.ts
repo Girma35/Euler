@@ -32,3 +32,4 @@ export function getServiceSchema({ name, description, price, category, url }: Se
     }
   }
 }
+
