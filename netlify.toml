@@ -1,0 +1,4 @@
+[build]
+  command = "corepack enable && corepack prepare pnpm@9.8.0 --activate && pnpm install --frozen-lockfile && pnpm run build && pnpm exec next export"
+  publish = "out"
+  environment = { NODE_VERSION = "20" }
