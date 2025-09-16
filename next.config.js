@@ -17,4 +17,9 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = {
+  output: "export",
+  // optional: set assetPrefix / basePath if deploying to subpath
+  // assetPrefix: "/your-base-path",
+  // basePath: "/your-base-path",
+};
