@@ -28,15 +28,18 @@ jobs:
         with:
           node-version: "20"
 
-      # 3️⃣ Setup pnpm
+      # 3️⃣ Setup pnpm (v5 ensures PATH works)
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 9
 
-      # 4️⃣ Add pnpm to PATH
-      - name: Add pnpm to PATH
-        run: echo "${PNPM_HOME}" >> $GITHUB_PATH
+      # 4️⃣ Verify pnpm is available (debug step)
+      - name: Verify pnpm
+        run: |
+          echo "PATH: $PATH"
+          which pnpm
+          pnpm --version
 
       # 5️⃣ Setup Pages
       - name: Setup Pages
