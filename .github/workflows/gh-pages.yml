@@ -1,3 +1,4 @@
+# ...existing code...
 name: Deploy Next.js site to Pages
 
 on:
@@ -28,27 +29,23 @@ jobs:
         with:
           node-version: "20"
 
-      # 3️⃣ Setup pnpm
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 9
+      # 3️⃣ Setup pnpm (use Corepack instead of pnpm/action-setup@v5)
+      - name: Setup pnpm via Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.8.0 --activate
 
-      # 4️⃣ Add pnpm to PATH (definite fix)
-      - name: Add pnpm to PATH
-        run: echo "${PNPM_HOME}/bin" >> $GITHUB_PATH
-
-      # 5️⃣ Verify pnpm installation (optional debug step)
+      # 4️⃣ Verify pnpm installation (optional debug step)
       - name: Verify pnpm
         run: |
           which pnpm
           pnpm --version
 
-      # 6️⃣ Install dependencies
+      # 5️⃣ Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 7️⃣ Build Next.js app and export static site
+      # 6️⃣ Build Next.js app and export static site
       - name: Build with Next.js and export static site
         run: |
           pnpm run build
