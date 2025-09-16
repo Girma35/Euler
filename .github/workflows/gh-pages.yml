@@ -28,26 +28,30 @@ jobs:
         with:
           node-version: "20"
 
-      # 3️⃣ Setup pnpm (v5 ensures PATH works)
+      # 3️⃣ Setup pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v5
         with:
           version: 9
 
-      # 4️⃣ Verify pnpm is available (debug step)
+      # 4️⃣ Add pnpm to PATH (definite fix)
+      - name: Add pnpm to PATH
+        run: echo "${PNPM_HOME}/bin" >> $GITHUB_PATH
+
+      # 5️⃣ Verify pnpm installation (optional debug step)
       - name: Verify pnpm
         run: |
           echo "PATH: $PATH"
           which pnpm
           pnpm --version
 
-      # 5️⃣ Setup Pages
+      # 6️⃣ Setup Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
           static_site_generator: next
 
-      # 6️⃣ Restore Next.js cache
+      # 7️⃣ Restore Next.js cache
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -57,15 +61,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      # 7️⃣ Install dependencies
+      # 8️⃣ Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 8️⃣ Build Next.js app
+      # 9️⃣ Build Next.js app
       - name: Build with Next.js
         run: pnpm next build
 
-      # 9️⃣ Upload artifact for deployment
+      # 🔟 Upload artifact for deployment
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
