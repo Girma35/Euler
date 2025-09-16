@@ -14,7 +14,7 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-jobs:
+jobs:git grep -n "pnpm/action-setup\|action-setup@v5" || true
   build:
     runs-on: ubuntu-latest
     steps:
